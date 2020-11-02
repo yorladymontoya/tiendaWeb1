@@ -23,17 +23,17 @@
 
 <div  class="container-sm">
     <div>
-        <form action="tiendaWeb1.php" method="POST" >
+        <form action="registrarProductos.php" method="POST" >
         <div class="row">
             <div class="col">
-            <input type="text" class="form-control" placeholder="Nombre del Producto" name="nombreProducto">
+            <input type="text" class="form-control" placeholder="Nombre del Producto" name="Producto">
             </div>
             <div class="col">
             <input type="text" class="form-control" placeholder="Marca" name="marca">
             </div>
             <div class="row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="Precio" name="precio">
+            <input type="number" class="form-control" placeholder="Precio" name="precio">
             
             </div>
         </div>
@@ -46,16 +46,7 @@
         
             <input type="submit" class="btn btn-primary" name="btnregist" value="Registrar">
         </form>
-             <?php 
-                        if($_POST['nombreProducto'] == '' || $_POST['marca'] == ''|| $_POST['precio'] == '' )  {
-                            echo('Digite todos los campos');
-                        }elseif ($_POST['marca'] == '') {
-                            echo ("Digite la marca");
-                        }elseif ($_POST['precio'] == '') {
-                            echo ("Digite el precio");
-                        }
-                  
-                    ?>
+            
      </div>
 </div>
 
