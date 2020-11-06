@@ -14,7 +14,8 @@
 </head>
 <body>
  
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" img src="../htdocs/tiendaWeb1/tienda-interna.jpg" >
+
   <div class="container">
     <h1 class="display-4">Administrador de productos</h1>
     <p class="lead">Tienda virtual tecnologica.</p>

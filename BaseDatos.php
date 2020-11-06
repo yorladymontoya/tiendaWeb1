@@ -11,14 +11,7 @@
        //metodos
        public function conectarBD()
        {
-       /*
-           if($conexionBD)
-           {
-               echo("exito");
-           }else{
-               echo("error");
-           }
-       */
+   
            try {
                $datosBD="mysql:host=localhost;dbname=bd_tiendaweb1";
                $conexionBD= new PDO($datosBD, $this -> usuarioBD, $this -> passwordBD);
@@ -39,8 +32,7 @@
                $insertarProductos=$conexionBD->prepare($consultarSQL);
    
                //Ejecutar la consulta
-               $insertarProductos->execute();
-               $resultado= $insertarProductos->execute();
+                $resultado= $insertarProductos->execute();
    
                //Verifico el resultado
                if($resultado){
@@ -48,9 +40,44 @@
                }else{
                    echo('Error');
                }
-   
-   
            }
+           public function consultarProductos($consultarSQL)
+        {
+            //Estableccer una conexion
+            $conexionBD= $this->conectarBD();
+
+             //Preparar la consulta
+             $consultarProductos=$conexionBD->prepare($consultarSQL);
+
+            //Establecer el metodo de consulta
+            $consultarProductos->setFetchMode(PDO::FETCH_ASSOC);
+
+            //Ejecutar la operacion en la BD
+            $consultarProductos->execute();
+            return( $consultarProductos->fetchAll());
+
+        }
+        public function eliminarProductos($consultarSQL)
+        {
+            //Estableccer una conexion
+            $conexionBD= $this->conectarBD();
+
+            //Preparar la consulta
+            $eliminarProductos=$conexionBD->prepare($consultarSQL);
+
+            //Ejecutar la consulta
+            $resultado=$eliminarProductos->execute();
+
+            //verificar el resultado
+
+        if ($resultado){
+            echo("El producto ha sido eliminado");
+        }
+        else{
+            echo("Error al eliminar el producto");
+        }  
+
+        }
    
    
    }
