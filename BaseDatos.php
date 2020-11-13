@@ -1,14 +1,12 @@
 <?php
    class BaseDatos
    {
-       //atributos
+   
        public $usuarioBD="root";
        public $passwordBD="";
    
-       //constructor
        public function __construct(){}
    
-       //metodos
        public function conectarBD()
        {
    
@@ -25,50 +23,32 @@
        }
            public function agregarProductos($consultarSQL)
            {
-               //Estableccer una conexion
+        
                $conexionBD= $this->conectarBD();
-   
-               //Preparar la consulta
                $insertarProductos=$conexionBD->prepare($consultarSQL);
-   
-               //Ejecutar la consulta
                 $resultado= $insertarProductos->execute();
-   
-               //Verifico el resultado
                if($resultado){
-                   echo('Producto  agregado');
+                   echo('Producto  agregado con exito');
                }else{
-                   echo('Error');
+                   echo('Error al agregar el producto');
                }
            }
            public function consultarProductos($consultarSQL)
         {
-            //Estableccer una conexion
             $conexionBD= $this->conectarBD();
+            $consultarProductos=$conexionBD->prepare($consultarSQL);
 
-             //Preparar la consulta
-             $consultarProductos=$conexionBD->prepare($consultarSQL);
-
-            //Establecer el metodo de consulta
             $consultarProductos->setFetchMode(PDO::FETCH_ASSOC);
-
-            //Ejecutar la operacion en la BD
             $consultarProductos->execute();
             return( $consultarProductos->fetchAll());
 
         }
         public function eliminarProductos($consultarSQL)
         {
-            //Estableccer una conexion
+           
             $conexionBD= $this->conectarBD();
-
-            //Preparar la consulta
             $eliminarProductos=$conexionBD->prepare($consultarSQL);
-
-            //Ejecutar la consulta
             $resultado=$eliminarProductos->execute();
-
-            //verificar el resultado
 
         if ($resultado){
             echo("El producto ha sido eliminado");
@@ -78,8 +58,18 @@
         }  
 
         }
-   
-   
+        public function editarProductos($consultarSQL){
+            $conexionBD= $this->conectarBD();
+            $editarProductos=$conexionBD->prepare($consultarSQL);
+            $resultado=$editarProductos->execute();
+
+            if ($resultado){
+                echo("El producto ha sido editado con exito");
+            }
+            else{
+                echo("Error al editar el producto");
+            }  
+        }
    }
 
 
